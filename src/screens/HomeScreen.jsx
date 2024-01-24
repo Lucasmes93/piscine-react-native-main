@@ -22,10 +22,6 @@ const HomeScreen = () => {
             source={require('../../assets/background.jpg')} // Assurez-vous d'ajuster le chemin de l'image selon votre structure de projet
             style={styles.container}
         >
-            <View style={styles.header}>
-                <Text style={styles.subHeading}>Bienvenue</Text>
-            </View>
-
             <View style={styles.content}>
                 <Text style={styles.heading}>Connectez-vous</Text>
 
