@@ -1,45 +1,52 @@
-// Button.jsx
+
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Text, TouchableOpacity } from 'react-native';
 
-const Button = ({ label, onClick, color }) => {
-    // Nouvel état pour déterminer si une partie du composant doit être affichée
-    const [showAdditionalContent, setShowAdditionalContent] = useState(false);
-
-    const buttonStyle = {
+const Button = ({ label, onPress, color, backgroundColor, borderRadius }) => {
+    const [buttonStyle, setButtonStyle] = useState({
         color: color || 'white',
-        backgroundColor: 'blue',
-        borderRadius: '5px',
-        padding: '10px 20px',
+        backgroundColor: backgroundColor || '#3498db',
+        borderRadius: borderRadius || 5,
+        padding: 10,
         cursor: 'pointer',
         border: 'none',
+        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+        transition: 'background-color 0.3s ease-in-out',
+    });
+
+    const handleHover = () => {
+        setButtonStyle(prevStyle => ({
+            ...prevStyle,
+            backgroundColor: '#2980b9',
+        }));
+    };
+
+    const handleLeave = () => {
+        setButtonStyle(prevStyle => ({
+            ...prevStyle,
+            backgroundColor: backgroundColor || '#3498db',
+        }));
     };
 
     return (
-        <div>
-            <button style={buttonStyle} onClick={onClick}>
-                {label}
-            </button>
-
-            {/* Afficher la partie supplémentaire si showAdditionalContent est true */}
-            {showAdditionalContent && (
-                <div style={{ marginTop: '10px', padding: '10px', backgroundColor: 'lightgray' }}>
-                    Contenu supplémentaire
-                </div>
-            )}
-
-            {/* Bouton pour basculer l'état */}
-            <button onClick={() => setShowAdditionalContent(!showAdditionalContent)}>
-                {showAdditionalContent ? 'Cacher' : 'Afficher'} le contenu supplémentaire
-            </button>
-        </div>
+        <TouchableOpacity
+            style={buttonStyle}
+            onPress={onPress}
+            onMouseEnter={handleHover}
+            onMouseLeave={handleLeave}
+        >
+            <Text>{label}</Text>
+        </TouchableOpacity>
     );
 };
 
 Button.propTypes = {
     label: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
+    onPress: PropTypes.func.isRequired,
     color: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    borderRadius: PropTypes.number,
 };
 
 export default Button;
