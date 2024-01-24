@@ -1,19 +1,18 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({ label, onClick, color, backgroundColor, borderRadius }) => {
+const Button = ({ label, onPress, color }) => {
     const buttonStyle = {
         color: color || 'white',
-        backgroundColor: backgroundColor || 'blue',
-        borderRadius: borderRadius || '5px',
+        backgroundColor: 'blue',
+        borderRadius: '5px',
         padding: '10px 20px',
         cursor: 'pointer',
         border: 'none',
     };
 
     return (
-        <button style={buttonStyle} onClick={onClick}>
+        <button style={buttonStyle} onClick={onPress}>
             {label}
         </button>
     );
@@ -21,10 +20,8 @@ const Button = ({ label, onClick, color, backgroundColor, borderRadius }) => {
 
 Button.propTypes = {
     label: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
+    onPress: PropTypes.func.isRequired,
     color: PropTypes.string,
-    backgroundColor: PropTypes.string,
-    borderRadius: PropTypes.string,
 };
 
 export default Button;
