@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, ImageBackground, ActivityIndicator } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, ActivityIndicator, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
@@ -10,28 +10,33 @@ const HomeScreen = () => {
     const [registerLoading, setRegisterLoading] = useState(false);
 
     const handleLogin = () => {
+        if (!email || !password) {
+            Alert.alert('Erreur', 'Veuillez remplir tous les champs pour la connexion.');
+            return;
+        }
+
         setLoginLoading(true);
 
-        // Simulez une requête asynchrone
+        // Simuler une requête asynchrone
         setTimeout(() => {
             // Logique de connexion ici
             console.log('Email:', email);
-            console.log('Password:', password);
+            console.log('Mot de passe:', password);
 
             setLoginLoading(false);
-        }, 1000); // Réduisez le temps à 1 seconde
+        }, 1000);
     };
 
     const handleRegister = () => {
         setRegisterLoading(true);
 
-        // Simulez une requête asynchrone
+        // Simuler une requête asynchrone
         setTimeout(() => {
             // Logique de redirection vers la page d'inscription
             navigation.navigate('Register');
 
             setRegisterLoading(false);
-        }, 1000); // Réduisez le temps à 1 seconde
+        }, 1000);
     };
 
     return (

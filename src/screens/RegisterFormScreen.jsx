@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, ActivityIndicator, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const RegisterFormScreen = () => {
@@ -12,24 +12,29 @@ const RegisterFormScreen = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const handleRegister = () => {
-        // Mettez l'état de chargement à true
+        if (!firstName || !lastName || !email || !password || !confirmPassword) {
+            Alert.alert('Erreur', 'Veuillez remplir tous les champs.');
+            return;
+        }
+
+        // Set loading state to true
         setLoading(true);
 
-        // Simulez une requête asynchrone, par exemple, une requête réseau
+        // Simulate an asynchronous request, for example, a network request
         setTimeout(() => {
-            // Logique d'inscription ici
+            // Registration logic here
             console.log('Nom:', firstName);
             console.log('Prénom:', lastName);
             console.log('Email:', email);
             console.log('Mot de passe:', password);
             console.log('Confirmation du mot de passe:', confirmPassword);
 
-            // Remettez l'état de chargement à false
+            // Reset loading state to false
             setLoading(false);
 
-            // Redirection vers la page d'accueil (HomeScreen)
+            // Redirect to the home page (HomeScreen)
             navigation.navigate('Home');
-        }, 1000); // Réduisez le temps à 1 seconde
+        }, 1000); // Reduce the time to 1 second
     };
 
     return (
