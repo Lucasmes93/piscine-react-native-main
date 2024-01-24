@@ -1,74 +1,29 @@
+// src/screens/RegisterFormScreen.jsx
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
-// src/components/RegisterForm.jsx
-import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
-
-const RegisterForm = () => {
-    const [nom, setNom] = useState('');
-    const [prenom, setPrenom] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-
-    const handleCoffeePress = () => {
-        // Action lorsque le bouton "Faire le café" est pressé
-        console.log('Faire le café ! ☕');
-    };
-
+const RegisterFormScreen = () => {
     return (
         <View style={styles.container}>
-            <TextInput
-                label="Nom"
-                value={nom}
-                onChangeText={(text) => setNom(text)}
-                style={styles.input}
-            />
-            <TextInput
-                label="Prénom"
-                value={prenom}
-                onChangeText={(text) => setPrenom(text)}
-                style={styles.input}
-            />
-            <TextInput
-                label="Email"
-                value={email}
-                onChangeText={(text) => setEmail(text)}
-                style={styles.input}
-                keyboardType="email-address"
-            />
-            <TextInput
-                label="Mot de passe"
-                value={password}
-                onChangeText={(text) => setPassword(text)}
-                style={styles.input}
-                secureTextEntry
-            />
-            <TextInput
-                label="Confirmer le mot de passe"
-                value={confirmPassword}
-                onChangeText={(text) => setConfirmPassword(text)}
-                style={styles.input}
-                secureTextEntry
-            />
-            <Button mode="contained" onPress={handleCoffeePress} style={styles.button}>
-                Faire le café
-            </Button>
+            <Text style={styles.heading}>Formulaire d'Inscription</Text>
+            {/* Ajoutez vos éléments de formulaire ici */}
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        padding: 20,
-        width: '80%',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f5f5f5',
+        padding: 16,
     },
-    input: {
-        marginVertical: 10,
-    },
-    button: {
-        marginTop: 20,
+    heading: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 24,
     },
 });
 
-export default RegisterForm;
+export default RegisterFormScreen;

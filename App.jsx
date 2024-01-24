@@ -1,20 +1,15 @@
 // src/components/App.jsx
 import React from 'react';
-import { View, StyleSheet, ImageBackground } from 'react-native';
-import {Button} from './src/components/Button'
-import HomeScreen from './src/screens/HomeScreen';
-import RegisterForm from './src/components/RegisterForm';
+import { View, StyleSheet } from 'react-native';
+import Button from './src/components/Button'; // Utilisation du chemin modifié
+import HomeScreen from './src/screens/HomeScreen'; // Utilisation du chemin modifié
+import RegisterForm from './src/components/RegisterForm'; // Utilisation du chemin modifié
 
 const App = () => {
     return (
-        <ImageBackground
-            source={require('./assets/background.jpg')}
-            style={styles.backgroundImage}
-        >
-            <View style={styles.container}>
-                <HomeScreen />
-            </View>
-        </ImageBackground>
+        <View style={styles.container}>
+            <HomeScreen />
+        </View>
     );
 };
 
@@ -23,11 +18,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    backgroundImage: {
-        flex: 1,
-        resizeMode: 'cover', // Stretches or covers the background image to fill the entire container
-        justifyContent: 'center',
     },
 });
 
