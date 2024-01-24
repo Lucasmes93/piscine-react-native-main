@@ -1,24 +1,21 @@
 // src/components/App.jsx
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import Button from './src/components/Button'; // Utilisation du chemin modifié
-import HomeScreen from './src/screens/HomeScreen'; // Utilisation du chemin modifié
-import RegisterForm from './src/components/RegisterForm'; // Utilisation du chemin modifié
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './src/screens/HomeScreen';
+import RegisterFormScreen from './src/screens/RegisterFormScreen';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
     return (
-        <View style={styles.container}>
-            <HomeScreen />
-        </View>
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="Home">
+                <Stack.Screen name="Home" component={HomeScreen} />
+                <Stack.Screen name="Register" component={RegisterFormScreen} />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-});
 
 export default App;

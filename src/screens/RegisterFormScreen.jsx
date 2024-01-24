@@ -1,22 +1,21 @@
-// src/screens/HomeScreen.jsx
+// src/screens/RegisterFormScreen.jsx
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground} from 'react-native';
 
-const HomeScreen = () => {
-    const navigation = useNavigation();
+const RegisterFormScreen = () => {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const handleLogin = () => {
-        // Logique de connexion ici
-        console.log('Email:', email);
-        console.log('Password:', password);
-    };
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     const handleRegister = () => {
-        // Naviguer vers l'écran d'inscription
-        navigation.navigate('Register');
+        // Logique d'inscription ici
+        console.log('Nom:', firstName);
+        console.log('Prénom:', lastName);
+        console.log('Email:', email);
+        console.log('Mot de passe:', password);
+        console.log('Confirmation du mot de passe:', confirmPassword);
     };
 
     return (
@@ -24,36 +23,48 @@ const HomeScreen = () => {
             source={require('../../assets/background.jpg')}
             style={styles.container}
         >
-            <View style={styles.content}>
-                <Text style={styles.heading}>Connectez-vous</Text>
+            <View style={styles.container}>
+                <Text style={styles.heading}>Formulaire d'Inscription</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Nom"
+                    onChangeText={setFirstName}
+                    value={firstName}
+             />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Prénom"
+                 onChangeText={setLastName}
+                    value={lastName}
+                />
                 <TextInput
                     style={styles.input}
                     placeholder="Email"
-                    placeholderTextColor="#B1B1B1"
                     onChangeText={setEmail}
                     value={email}
+                    keyboardType="email-address"
                 />
                 <TextInput
                     style={styles.input}
                     placeholder="Mot de passe"
-                    placeholderTextColor="#B1B1B1"
-                    secureTextEntry
                     onChangeText={setPassword}
                     value={password}
+                    secureTextEntry
                 />
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                        <Text style={styles.buttonText}>Connexion</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={handleRegister}>
-                        <Text style={styles.buttonText}>Inscription</Text>
-                    </TouchableOpacity>
-                </View>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Confirmer le mot de passe"
+                    onChangeText={setConfirmPassword}
+                    value={confirmPassword}
+                    secureTextEntry
+                />
+                <TouchableOpacity style={styles.button} onPress={handleRegister}>
+                 <Text style={styles.buttonText}>S'inscrire</Text>
+                </TouchableOpacity>
             </View>
         </ImageBackground>
     );
 };
-
 
 const styles = StyleSheet.create({
     container: {
@@ -125,5 +136,4 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 });
-
-export default HomeScreen;
+export default RegisterFormScreen;
