@@ -1,8 +1,10 @@
 // src/screens/RegisterFormScreen.jsx
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const RegisterFormScreen = () => {
+    const navigation = useNavigation();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -16,6 +18,9 @@ const RegisterFormScreen = () => {
         console.log('Email:', email);
         console.log('Mot de passe:', password);
         console.log('Confirmation du mot de passe:', confirmPassword);
+
+        // Redirection vers l'écran d'accueil (HomeScreen)
+        navigation.navigate('Home');
     };
 
     return (
@@ -23,18 +28,18 @@ const RegisterFormScreen = () => {
             source={require('../../assets/background.jpg')}
             style={styles.container}
         >
-            <View style={styles.container}>
+            <View style={styles.content}>
                 <Text style={styles.heading}>Formulaire d'Inscription</Text>
                 <TextInput
                     style={styles.input}
                     placeholder="Nom"
                     onChangeText={setFirstName}
                     value={firstName}
-             />
+                />
                 <TextInput
                     style={styles.input}
                     placeholder="Prénom"
-                 onChangeText={setLastName}
+                    onChangeText={setLastName}
                     value={lastName}
                 />
                 <TextInput
@@ -59,7 +64,7 @@ const RegisterFormScreen = () => {
                     secureTextEntry
                 />
                 <TouchableOpacity style={styles.button} onPress={handleRegister}>
-                 <Text style={styles.buttonText}>S'inscrire</Text>
+                    <Text style={styles.buttonText}>S'inscrire</Text>
                 </TouchableOpacity>
             </View>
         </ImageBackground>
@@ -69,28 +74,18 @@ const RegisterFormScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    header: {
-        alignItems: 'center',
-        marginBottom: 24,
-    },
-    subHeading: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        marginTop: 16,
-        color: '#FFF',
-    },
-    content: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 16,
+    },
+    content: {
+        width: '80%',
     },
     heading: {
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 24,
         color: '#FFF',
+        textAlign: 'center',
     },
     input: {
         width: '100%',
@@ -103,13 +98,8 @@ const styles = StyleSheet.create({
         padding: 8,
         color: '#333',
     },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
-    },
     button: {
-        width: '48%',
+        width: '100%',
         height: 48,
         borderRadius: 8,
         backgroundColor: 'mediumpurple',
@@ -123,17 +113,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
-    errorMessage: {
-        color: 'red',
-        fontSize: 16,
-        marginBottom: 16,
-    },
-    travelTime: {
-        marginTop: 10,
-        textAlign: 'center',
-    },
-    map: {
-        flex: 1,
-    },
 });
+
 export default RegisterFormScreen;
