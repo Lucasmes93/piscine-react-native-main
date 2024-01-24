@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, ImageBackground, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -10,35 +10,28 @@ const HomeScreen = () => {
     const [registerLoading, setRegisterLoading] = useState(false);
 
     const handleLogin = () => {
-        // Mettez l'état de chargement à true
         setLoginLoading(true);
 
-        // Simulez une requête asynchrone, par exemple, une requête réseau
+        // Simulez une requête asynchrone
         setTimeout(() => {
             // Logique de connexion ici
             console.log('Email:', email);
             console.log('Password:', password);
 
-            // Remettez l'état de chargement à false
             setLoginLoading(false);
-        }, 1000); // Utilisez le temps nécessaire pour simuler la requête asynchrone
+        }, 1000); // Réduisez le temps à 1 seconde
     };
 
     const handleRegister = () => {
-        // Mettez l'état de chargement à true
         setRegisterLoading(true);
 
-        // Simulez une requête asynchrone, par exemple, une requête réseau
+        // Simulez une requête asynchrone
         setTimeout(() => {
-            // Logique d'inscription ici
-            console.log('Inscription');
-
-            // Remettez l'état de chargement à false
-            setRegisterLoading(false);
-
-            // Redirection vers la page d'inscription (RegisterFormScreen)
+            // Logique de redirection vers la page d'inscription
             navigation.navigate('Register');
-        }, 2000); // Utilisez le temps nécessaire pour simuler la requête asynchrone
+
+            setRegisterLoading(false);
+        }, 1000); // Réduisez le temps à 1 seconde
     };
 
     return (
@@ -101,7 +94,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 24,
-        color: '#FFF',
+        color: '#000',
     },
     input: {
         width: '100%',
@@ -133,18 +126,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 16,
         fontWeight: 'bold',
-    },
-    errorMessage: {
-        color: 'red',
-        fontSize: 16,
-        marginBottom: 16,
-    },
-    travelTime: {
-        marginTop: 10,
-        textAlign: 'center',
-    },
-    map: {
-        flex: 1,
     },
 });
 

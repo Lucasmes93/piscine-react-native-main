@@ -24,12 +24,12 @@ const RegisterFormScreen = () => {
             console.log('Mot de passe:', password);
             console.log('Confirmation du mot de passe:', confirmPassword);
 
-            // Redirection vers l'écran d'accueil (HomeScreen)
-            navigation.navigate('Home');
-
             // Remettez l'état de chargement à false
             setLoading(false);
-        }, 1000); // Utilisez le temps nécessaire pour simuler la requête asynchrone
+
+            // Redirection vers la page d'accueil (HomeScreen)
+            navigation.navigate('Home');
+        }, 1000); // Réduisez le temps à 1 seconde
     };
 
     return (
@@ -42,10 +42,41 @@ const RegisterFormScreen = () => {
                 <TextInput
                     style={styles.input}
                     placeholder="Nom"
+                    placeholderTextColor="#000"
                     onChangeText={setFirstName}
                     value={firstName}
                 />
-                {/* Les autres champs TextInput ici */}
+                <TextInput
+                    style={styles.input}
+                    placeholder="Prénom"
+                    placeholderTextColor="#000"
+                    onChangeText={setLastName}
+                    value={lastName}
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Email"
+                    placeholderTextColor="#000"
+                    onChangeText={setEmail}
+                    value={email}
+                    keyboardType="email-address"
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Mot de passe"
+                    placeholderTextColor="#000"
+                    onChangeText={setPassword}
+                    value={password}
+                    secureTextEntry
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Confirmer le mot de passe"
+                    placeholderTextColor="#000"
+                    onChangeText={setConfirmPassword}
+                    value={confirmPassword}
+                    secureTextEntry
+                />
                 <TouchableOpacity style={styles.button} onPress={handleRegister}>
                     {loading ? (
                         <ActivityIndicator size="small" color="#fff" />
@@ -71,19 +102,19 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 24,
-        color: '#FFF',
+        color: 'white',
         textAlign: 'center',
     },
     input: {
         width: '100%',
         height: 48,
         borderRadius: 8,
-        backgroundColor: '#fff',
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
         borderWidth: 1,
         borderColor: '#ccc',
         marginBottom: 16,
         padding: 8,
-        color: '#333',
+        color: '#000',
     },
     button: {
         width: '100%',
