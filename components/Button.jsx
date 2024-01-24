@@ -1,7 +1,11 @@
-import React from 'react';
+// Button.jsx
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({ label, onPress, color }) => {
+const Button = ({ label, onClick, color }) => {
+    // Nouvel état pour déterminer si une partie du composant doit être affichée
+    const [showAdditionalContent, setShowAdditionalContent] = useState(false);
+
     const buttonStyle = {
         color: color || 'white',
         backgroundColor: 'blue',
@@ -12,15 +16,29 @@ const Button = ({ label, onPress, color }) => {
     };
 
     return (
-        <button style={buttonStyle} onClick={onPress}>
-            {label}
-        </button>
+        <div>
+            <button style={buttonStyle} onClick={onClick}>
+                {label}
+            </button>
+
+            {/* Afficher la partie supplémentaire si showAdditionalContent est true */}
+            {showAdditionalContent && (
+                <div style={{ marginTop: '10px', padding: '10px', backgroundColor: 'lightgray' }}>
+                    Contenu supplémentaire
+                </div>
+            )}
+
+            {/* Bouton pour basculer l'état */}
+            <button onClick={() => setShowAdditionalContent(!showAdditionalContent)}>
+                {showAdditionalContent ? 'Cacher' : 'Afficher'} le contenu supplémentaire
+            </button>
+        </div>
     );
 };
 
 Button.propTypes = {
     label: PropTypes.string.isRequired,
-    onPress: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired,
     color: PropTypes.string,
 };
 
