@@ -9,10 +9,6 @@ const App = () => {
     return (
         <View style={styles.container}>
             <HomeScreen />
-            <Button
-                label="Appuyez sur moi"
-                onPress={() => console.log('Bouton cliqué')}
-            />
             <RegisterForm />
         </View>
     );
