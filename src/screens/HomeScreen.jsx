@@ -1,22 +1,44 @@
-// src/screens/HomeScreen.jsx
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, ImageBackground, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
     const navigation = useNavigation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loginLoading, setLoginLoading] = useState(false);
+    const [registerLoading, setRegisterLoading] = useState(false);
 
     const handleLogin = () => {
-        // Logique de connexion ici
-        console.log('Email:', email);
-        console.log('Password:', password);
+        // Mettez l'état de chargement à true
+        setLoginLoading(true);
+
+        // Simulez une requête asynchrone, par exemple, une requête réseau
+        setTimeout(() => {
+            // Logique de connexion ici
+            console.log('Email:', email);
+            console.log('Password:', password);
+
+            // Remettez l'état de chargement à false
+            setLoginLoading(false);
+        }, 1000); // Utilisez le temps nécessaire pour simuler la requête asynchrone
     };
 
     const handleRegister = () => {
-        // Naviguer vers l'écran d'inscription
-        navigation.navigate('Register');
+        // Mettez l'état de chargement à true
+        setRegisterLoading(true);
+
+        // Simulez une requête asynchrone, par exemple, une requête réseau
+        setTimeout(() => {
+            // Logique d'inscription ici
+            console.log('Inscription');
+
+            // Remettez l'état de chargement à false
+            setRegisterLoading(false);
+
+            // Redirection vers la page d'inscription (RegisterFormScreen)
+            navigation.navigate('Register');
+        }, 2000); // Utilisez le temps nécessaire pour simuler la requête asynchrone
     };
 
     return (
@@ -26,6 +48,7 @@ const HomeScreen = () => {
         >
             <View style={styles.content}>
                 <Text style={styles.heading}>Connectez-vous</Text>
+
                 <TextInput
                     style={styles.input}
                     placeholder="Email"
@@ -33,6 +56,7 @@ const HomeScreen = () => {
                     onChangeText={setEmail}
                     value={email}
                 />
+
                 <TextInput
                     style={styles.input}
                     placeholder="Mot de passe"
@@ -41,12 +65,21 @@ const HomeScreen = () => {
                     onChangeText={setPassword}
                     value={password}
                 />
+
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                        <Text style={styles.buttonText}>Connexion</Text>
+                        {loginLoading ? (
+                            <ActivityIndicator size="small" color="#fff" />
+                        ) : (
+                            <Text style={styles.buttonText}>Connexion</Text>
+                        )}
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.button} onPress={handleRegister}>
-                        <Text style={styles.buttonText}>Inscription</Text>
+                        {registerLoading ? (
+                            <ActivityIndicator size="small" color="#fff" />
+                        ) : (
+                            <Text style={styles.buttonText}>Inscription</Text>
+                        )}
                     </TouchableOpacity>
                 </View>
             </View>
@@ -54,20 +87,9 @@ const HomeScreen = () => {
     );
 };
 
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    header: {
-        alignItems: 'center',
-        marginBottom: 24,
-    },
-    subHeading: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        marginTop: 16,
-        color: '#FFF',
     },
     content: {
         flex: 1,

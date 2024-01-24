@@ -1,10 +1,10 @@
-// src/screens/RegisterFormScreen.jsx
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const RegisterFormScreen = () => {
     const navigation = useNavigation();
+    const [loading, setLoading] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -12,15 +12,24 @@ const RegisterFormScreen = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const handleRegister = () => {
-        // Logique d'inscription ici
-        console.log('Nom:', firstName);
-        console.log('Prénom:', lastName);
-        console.log('Email:', email);
-        console.log('Mot de passe:', password);
-        console.log('Confirmation du mot de passe:', confirmPassword);
+        // Mettez l'état de chargement à true
+        setLoading(true);
 
-        // Redirection vers l'écran d'accueil (HomeScreen)
-        navigation.navigate('Home');
+        // Simulez une requête asynchrone, par exemple, une requête réseau
+        setTimeout(() => {
+            // Logique d'inscription ici
+            console.log('Nom:', firstName);
+            console.log('Prénom:', lastName);
+            console.log('Email:', email);
+            console.log('Mot de passe:', password);
+            console.log('Confirmation du mot de passe:', confirmPassword);
+
+            // Redirection vers l'écran d'accueil (HomeScreen)
+            navigation.navigate('Home');
+
+            // Remettez l'état de chargement à false
+            setLoading(false);
+        }, 1000); // Utilisez le temps nécessaire pour simuler la requête asynchrone
     };
 
     return (
@@ -36,35 +45,13 @@ const RegisterFormScreen = () => {
                     onChangeText={setFirstName}
                     value={firstName}
                 />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Prénom"
-                    onChangeText={setLastName}
-                    value={lastName}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Email"
-                    onChangeText={setEmail}
-                    value={email}
-                    keyboardType="email-address"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Mot de passe"
-                    onChangeText={setPassword}
-                    value={password}
-                    secureTextEntry
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Confirmer le mot de passe"
-                    onChangeText={setConfirmPassword}
-                    value={confirmPassword}
-                    secureTextEntry
-                />
+                {/* Les autres champs TextInput ici */}
                 <TouchableOpacity style={styles.button} onPress={handleRegister}>
-                    <Text style={styles.buttonText}>S'inscrire</Text>
+                    {loading ? (
+                        <ActivityIndicator size="small" color="#fff" />
+                    ) : (
+                        <Text style={styles.buttonText}>S'inscrire</Text>
+                    )}
                 </TouchableOpacity>
             </View>
         </ImageBackground>
