@@ -1,8 +1,20 @@
-// components/PrenomsListe.jsx
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 
-const PrenomsListe = ({ data }) => {
+const ListePrenoms = () => {
+    const listePrenoms = [
+        { prenom: 'Devin' },
+        { prenom: 'Dan' },
+        { prenom: 'Dominic' },
+        { prenom: 'Jackson' },
+        { prenom: 'James' },
+        { prenom: 'Joel' },
+        { prenom: 'John' },
+        { prenom: 'Jillian' },
+        { prenom: 'Jimmy' },
+        { prenom: 'Julie' },
+    ];
+
     const renderItem = ({ item }) => (
         <View style={{ padding: 10 }}>
             <Text>{item.prenom}</Text>
@@ -11,11 +23,11 @@ const PrenomsListe = ({ data }) => {
 
     return (
         <FlatList
-            data={data}
+            data={listePrenoms}
             renderItem={renderItem}
-            keyExtractor={(item) => item.prenom}
+            keyExtractor={(item, index) => index.toString()}
         />
     );
 };
 
-export default PrenomsListe;
+export default ListePrenoms;
