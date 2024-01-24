@@ -17,24 +17,24 @@ const RegisterFormScreen = () => {
             return;
         }
 
-        // Set loading state to true
+        // Définir l'état de chargement à true pendant le traitement
         setLoading(true);
 
-        // Simulate an asynchronous request, for example, a network request
+        // Simuler une demande asynchrone, par exemple, une requête réseau
         setTimeout(() => {
-            // Registration logic here
+            // Logique d'inscription ici
             console.log('Nom:', firstName);
             console.log('Prénom:', lastName);
             console.log('Email:', email);
             console.log('Mot de passe:', password);
             console.log('Confirmation du mot de passe:', confirmPassword);
 
-            // Reset loading state to false
+            // Réinitialiser l'état de chargement à false
             setLoading(false);
 
-            // Redirect to the home page (HomeScreen)
+            // Rediriger vers la page d'accueil (HomeScreen)
             navigation.navigate('Home');
-        }, 1000); // Reduce the time to 1 second
+        }, 1000); // Réduire le temps à 1 seconde
     };
 
     return (
